@@ -635,7 +635,7 @@ extern int audit_signals;
 #define audit_putname(n) do { ; } while (0)
 #define __audit_inode(n,d) do { ; } while (0)
 #define __audit_inode_child(i,p) do { ; } while (0)
-#define audit_inode(n,d) do { (void)(d); } while (0)
+#define audit_inode(n,d) do { (void)(n);(void)(d); } while (0)
 #define audit_inode_child(i,p) do { ; } while (0)
 #define audit_core_dumps(i) do { ; } while (0)
 #define audit_seccomp(i,s,c) do { ; } while (0)
@@ -724,6 +724,10 @@ extern int audit_enabled;
 #define audit_log_key(b, k) do { ; } while (0)
 #define audit_log_link_denied(o, l) do { ; } while (0)
 #define audit_log_secctx(b,s) do { ; } while (0)
+static inline int audit_update_lsm_rules(void)
+{
+	return 0;
+}
 #define audit_enabled 0
 #endif
 #endif
